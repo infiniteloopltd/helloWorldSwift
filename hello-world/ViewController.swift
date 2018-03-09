@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
     @IBAction func btnGo_Click(_ sender: Any) {
         tvOutput.isHidden = false
-        tvOutput.text = "Hello " + tfName.text!
+        tvOutput.text = hiThere() + tfName.text!
         
     }
     
