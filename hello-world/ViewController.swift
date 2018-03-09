@@ -21,7 +21,11 @@ class ViewController: UIViewController {
 
     @IBAction func btnGo_Click(_ sender: Any) {
         tvOutput.isHidden = false
-        tvOutput.text = hiThere() + tfName.text!
+        // Sample 4000/310
+        let dict = german_lookup(registrationNumber: "4000/310",  username:"dananos", password:"lokiju")
+        
+        tvOutput.text = dict["Description"] as? String
+     
         
     }
     
