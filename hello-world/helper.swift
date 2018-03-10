@@ -12,16 +12,32 @@ public func hiThere() -> String {
     return "Hello you "
 }
 
-public func german_lookup(registrationNumber: String, username: String, password: String) -> ([String: Any])
+public func german_lookup(registrationNumber: String, username: String, password: String) throws -> ([String: Any])
 {
-    let url = URL(string: "http://www.regcheck.org.uk/api/json.aspx/CheckGermany/" + registrationNumber)
-    return lookup(url: url!, username: username, password: password )
+    do
+    {
+        let url = URL(string: "http://www.regcheck.org.uk/api/json.aspx/CheckGermany/" + registrationNumber)
+        return try lookup(url: url!, username: username, password: password )
+    }
+    catch
+    {
+        throw NSError();
+    }
+    
 }
 
-public func austrian_lookup(registrationNumber: String, username: String, password: String) -> ([String: Any])
+public func austrian_lookup(registrationNumber: String, username: String, password: String) throws -> ([String: Any])
 {
-    let url = URL(string: "http://www.regcheck.org.uk/api/json.aspx/CheckAustria/" + registrationNumber)
-    return lookup(url: url!, username: username, password: password )
+    do
+    {
+        let url = URL(string: "http://www.regcheck.org.uk/api/json.aspx/CheckAustria/" + registrationNumber)
+        return try lookup(url: url!, username: username, password: password )
+    }
+    catch
+    {
+        throw NSError();
+    }
+    
 }
 
 extension URLSession {
@@ -47,7 +63,7 @@ extension URLSession {
     }
 }
 
-func lookup(url: URL, username: String, password: String) -> ([String: Any]) {
+func lookup(url: URL, username: String, password: String) throws -> ([String: Any]) {
     let loginString = String(format: "%@:%@", username, password)
     let loginData = loginString.data(using: String.Encoding.utf8)!
     let base64LoginString = loginData.base64EncodedString()
@@ -60,7 +76,13 @@ func lookup(url: URL, username: String, password: String) -> ([String: Any]) {
     
     let json = try? JSONSerialization.jsonObject(with: data!, options: [])
     
+    if (json == nil) {
+        throw NSError()
+    }
+    
     let dictionary = json as? [String: Any]
+    
+  
     
     return dictionary!
     

@@ -20,16 +20,33 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    @IBAction func tdName_Change(_ sender: Any) {
+    }
 
     @IBAction func btnGo_Click(_ sender: Any) {
+    
+        
+            
         tvOutput.isHidden = false
         // Sample 4000/310
-        let dict = german_lookup(registrationNumber: "4000/310",  username:"dananos", password:"lokiju")
-        
-        tvOutput.text = dict["Description"] as? String
-        let strImageUrl = dict["ImageUrl"] as? String
-        imgOutput.downloadedFrom(link: strImageUrl!)
+        do
+        {
+            
+             let dict = try german_lookup(registrationNumber: tfName.text!,  username:"dananos", password:"lokiju")
+            
+            tvOutput.text = dict["Description"] as? String
+            let strImageUrl = dict["ImageUrl"] as? String
+            imgOutput.downloadedFrom(link: strImageUrl!)
+            
+        }
+        catch
+        {
+            tvOutput.text = "Sorry, not recognised";
+        }
     }
-    
+       
 }
+    
+
 
