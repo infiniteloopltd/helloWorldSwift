@@ -17,6 +17,10 @@ public func german_lookup(registrationNumber: String, username: String, password
     do
     {
         let url = URL(string: "http://www.regcheck.org.uk/api/json.aspx/CheckGermany/" + registrationNumber)
+        if (url == nil)
+        {
+            throw NSError()
+        }
         return try lookup(url: url!, username: username, password: password )
     }
     catch
@@ -31,6 +35,10 @@ public func austrian_lookup(registrationNumber: String, username: String, passwo
     do
     {
         let url = URL(string: "http://www.regcheck.org.uk/api/json.aspx/CheckAustria/" + registrationNumber)
+        if (url == nil)
+        {
+            throw NSError()
+        }
         return try lookup(url: url!, username: username, password: password )
     }
     catch

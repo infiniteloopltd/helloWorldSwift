@@ -21,9 +21,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    @IBAction func tdName_Change(_ sender: Any) {
+    
+    @IBAction func tfName_Change(_ sender: Any) {
     }
-
+    
     @IBAction func btnGo_Click(_ sender: Any) {
     
         
@@ -43,6 +44,14 @@ class ViewController: UIViewController {
         catch
         {
             tvOutput.text = "Sorry, not recognised";
+            
+            let alertController = UIAlertController(title: "Sorry", message: "Code Not recognised :(", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+            alertController.addAction(cancelAction)
+
+            self.present(alertController, animated: true, completion: nil)
         }
     }
        
