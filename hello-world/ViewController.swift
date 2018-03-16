@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         do
         {
             
-             let dict = try german_lookup(registrationNumber: tfName.text!,  username:"xxxxx", password:"lokiju")
+             let dict = try german_lookup(registrationNumber: tfName.text!,  username:"xxxxx", password:"xxxxx")
             
             tvOutput.text = dict["Description"] as? String
             let strImageUrl = dict["ImageUrl"] as? String
